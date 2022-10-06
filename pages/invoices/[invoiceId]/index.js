@@ -1,4 +1,4 @@
-import React, {  useRef } from "react";
+import React, { useRef } from "react";
 import { useRouter } from "next/router";
 import { MongoClient, ObjectId } from "mongodb";
 import { toast } from "react-toastify";
@@ -8,7 +8,7 @@ const InvoiceDetails = (props) => {
   const router = useRouter();
   const { data } = props;
   const modalRef = useRef(null);
- 
+
 
   const goBack = () => router.push("/");
 
@@ -106,7 +106,7 @@ const InvoiceDetails = (props) => {
             }>
             Mark as Paid
           </button>
-          <button class="btn" onClick={() => {window.print()}}>Print this bill</button>
+          {/* <button class="btn" onClick={() => {window.print()}}>Print this bill</button> */}
         </div>
       </div>
 
@@ -294,6 +294,6 @@ export async function getStaticProps(context) {
   else
     return null
 
-  
+
 
 }

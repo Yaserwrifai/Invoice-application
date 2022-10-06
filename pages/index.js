@@ -2,9 +2,16 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { MongoClient } from "mongodb";
 
-
+import React, { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
+//import { ComponentToPrint } from 'ComponentToPrint';
 
 export default function Home(props) {
+
+  const componentRef = useRef(null);
+  const handlePrint = useReactToPrint({ content: () => componentRef.current })
+
+
   const router = useRouter();
   const { data } = props;
 
@@ -14,23 +21,28 @@ export default function Home(props) {
     <div className="main__container">
       <div className="invoice__header">
         <div className="invoice__header-logo">
+          <div>
+            <button className="btn" onClick={() => { window.print() }}> Print billing summary</button>
+            
+            <button className="btn" onClick={handlePrint}>Print this out!</button>
+          </div>
           <h3>Invoices</h3>
           <p>There are total {data.length} invoices</p>
         </div>
-        <button className="btn" onClick={() => {window.print()}}> Print billing summary</button>
+
         <button className="btn" onClick={navigatePage}>
           Add New
         </button>
       </div>
 
-      <div className="invoice__container">
+      <div className="invoice__container" ref={componentRef}>
         {/* ======= invoice item =========== */}
         {data?.map((invoice) => (
           <Link href={`/invoices/${invoice.id}`} passRef key={invoice.id}>
             <div className="invoice__item">
               <div>
                 <h5 className="invoice__id">
-                { invoice.id}
+                  {invoice.id}
                   {/* {invoice.id.substr(0, 6).toUpperCase()} */}
                 </h5>
               </div>
@@ -49,13 +61,12 @@ export default function Home(props) {
 
               <div>
                 <button
-                  className={`${
-                    invoice.status === "paid"
+                  className={`${invoice.status === "paid"
                       ? "paid__status"
                       : invoice.status === "pending"
-                      ? "pending__status"
-                      : "draft__status"
-                  }`}
+                        ? "pending__status"
+                        : "draft__status"
+                    }`}
                 >
                   {invoice.status}
                 </button>
