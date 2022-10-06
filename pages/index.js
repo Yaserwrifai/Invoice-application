@@ -2,6 +2,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { MongoClient } from "mongodb";
 
+
+
 export default function Home(props) {
   const router = useRouter();
   const { data } = props;
@@ -15,7 +17,7 @@ export default function Home(props) {
           <h3>Invoices</h3>
           <p>There are total {data.length} invoices</p>
         </div>
-
+        <button className="btn" onClick={() => {window.print()}}> Print billing summary</button>
         <button className="btn" onClick={navigatePage}>
           Add New
         </button>

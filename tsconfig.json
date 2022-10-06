@@ -16,14 +16,18 @@
     "module": "esnext",
     "resolveJsonModule": true,
     "moduleResolution": "node",
-    
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "isolatedModules": true
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "pages/api/add-new/index.js", "pages/api/edit/[invoiceId]/index.js", "pages/add-new/index.js", "pages/api/invoices/[invoiceId]/index.js"  ],
+    "**/*.tsx",
+    "pages/api/add-new/index.js",
+    "pages/api/edit/[invoiceId]/index.js",
+    "pages/add-new/index.js",
+    "pages/api/invoices/[invoiceId]/index.js"
+  ],
   "exclude": [
     "node_modules"
   ]
