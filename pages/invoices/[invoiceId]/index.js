@@ -1,14 +1,18 @@
-import React, { useRef } from "react";
+
 import { useRouter } from "next/router";
 import { MongoClient, ObjectId } from "mongodb";
 import { toast } from "react-toastify";
 
+import React, { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
 
 const InvoiceDetails = (props) => {
   const router = useRouter();
   const { data } = props;
   const modalRef = useRef(null);
 
+  const componentRef = useRef(null);
+  const handlePrint = useReactToPrint({ content: () => componentRef.current })
 
   const goBack = () => router.push("/");
 
@@ -55,6 +59,10 @@ const InvoiceDetails = (props) => {
             } </button>
         </div>
 
+
+ {/* ------- */}
+ <button className="btn" onClick={handlePrint}>Print this out!</button>
+{/* --------- */}
         <div className="details__btns">
           <button className="edit__btn"
             onClick={
@@ -106,13 +114,13 @@ const InvoiceDetails = (props) => {
             }>
             Mark as Paid
           </button>
-          {/* <button class="btn" onClick={() => {window.print()}}>Print this bill</button> */}
+          <button className="btn" onClick={() => {window.print()}}>Print this bill</button> 
         </div>
       </div>
 
       {/* ========= invoice details =========== */}
 
-      <div className="invoice__details">
+      <div className="invoice__details" ref={componentRef}>
         <div className="details__box">
           <div>
             <h4>{
@@ -139,7 +147,7 @@ const InvoiceDetails = (props) => {
         </div>
 
         {/* =========== details box 2 =========== */}
-        <div className="details__box">
+        <div className="details__box" >
           <div>
             <div className="invoice__created-date">
               <p>Invoice Date</p>
@@ -259,9 +267,11 @@ export async function getStaticPaths() {
   };
 }
 
+
+// --------------------------------------------------------
 export async function getStaticProps(context) {
   const { invoiceId } = context.params;
-  // console.log('process.env.MONGO_URI', process.env.MONGO_URI)
+  console.log('process.env.DB_USER', process.env.DB_PASSWORD)
   const client = await MongoClient.connect('mongodb+srv://yaserwalid:lX2RkmcKUC3Sxlub@cluster0.z8tikhn.mongodb.net/invoices2?retryWrites=true&w=majority', { useNewUrlParser: true });
 
   const db = client.db();

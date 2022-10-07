@@ -4,13 +4,15 @@ import { MongoClient } from "mongodb";
 
 import React, { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
-//import { ComponentToPrint } from 'ComponentToPrint';
+
 
 export default function Home(props) {
 
   const componentRef = useRef(null);
   const handlePrint = useReactToPrint({ content: () => componentRef.current })
-
+  const user=process.env.DB_USER
+  const password=process.env.DB_PASSWORD
+  console.log('user &  password ....>',user , password )
 
   const router = useRouter();
   const { data } = props;
@@ -23,6 +25,7 @@ export default function Home(props) {
         <div className="invoice__header-logo">
           <div>
             <button className="btn" onClick={() => { window.print() }}> Print billing summary</button>
+            {/* //not work with safari */}
             
             <button className="btn" onClick={handlePrint}>Print this out!</button>
           </div>
@@ -35,7 +38,7 @@ export default function Home(props) {
         </button>
       </div>
 
-      <div className="invoice__container" ref={componentRef}>
+      <div className="invoice__container" ref={componentRef}>{/* // for print ref={componentRef} */}
         {/* ======= invoice item =========== */}
         {data?.map((invoice) => (
           <Link href={`/invoices/${invoice.id}`} passRef key={invoice.id}>
@@ -78,7 +81,7 @@ export default function Home(props) {
     </div>
   );
 }
-
+//----------------------------------------------------------
 export async function getStaticProps() {
   const client = await MongoClient.connect('mongodb+srv://yaserwalid:lX2RkmcKUC3Sxlub@cluster0.z8tikhn.mongodb.net/invoices2?retryWrites=true&w=majority', { useNewUrlParser: true })
 
@@ -102,3 +105,15 @@ export async function getStaticProps() {
     revalidate: 1,
   };
 }
+ //---------------
+//  export async function getServerSideProps() {
+// console.log('process.env.DB_USER', process.env.DB_USER)
+// console.log('process.env.DB_PASSWORD', process.env.DB_PASSWORD)
+
+
+//   return{
+//     props:{
+//       hello :"world"
+//     }
+//   }
+//  }

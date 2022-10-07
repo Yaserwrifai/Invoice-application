@@ -4,16 +4,16 @@
 /* ======== css variables ========= */
 :root {
   --primary-color: #7c5dfa;
-  --secondary-color: #1977d6;
-  --body-bg: #e1e414;
+  --secondary-color: rgb(81, 145, 240);
+  --body-bg: #ebec9f;
   --paid-status-bg: #1f2c3f;
   --paid-status-color: #32cf9b;
   --pending-status-bg: rgba(255, 143, 0, 0.06);
   --pending-status-color: #ff8f00;
-  --small-text-color: #888eb0;
+  --small-text-color: #b31319;
   --draft-bg: #252945;
   --delete-btn-bg: #ec5757;
-  --edit-btn-bg: #252945;
+  --edit-btn-bg: #c5d36f;
 }
 
 /* ======== base style ============ */
@@ -78,6 +78,7 @@ p {
   outline: none;
   cursor: pointer;
   font-weight: 500;
+  color:#b31319
 }
 
 .paid__status {
@@ -180,6 +181,7 @@ p {
   display: flex;
   align-items: center;
   column-gap: 1.5rem;
+  color: #e1e414;
 }
 
 .invoice__details-header {
