@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { MongoClient } from "mongodb";
+import Layout from "../components/Layout/Layout.tsx";
 
 import React, { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
@@ -20,6 +21,7 @@ export default function Home(props) {
   const navigatePage = () => router.push("/add-new");
 
   return (
+    <Layout>
     <div className="main__container">
       <div className="invoice__header">
         <div className="invoice__header-logo">
@@ -79,6 +81,7 @@ export default function Home(props) {
         ))}
       </div>
     </div>
+    </Layout>
   );
 }
 //----------------------------------------------------------

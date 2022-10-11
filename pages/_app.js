@@ -3,24 +3,34 @@ import Layout from "../components/Layout/Layout.tsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import React from "react";
-import InvoiceDetails from "./invoices/[invoiceId]";
+import { SessionProvider } from "next-auth/react"
 
-function MyApp({ Component, pageProps }) {
+
+export default function MyApp({Component, pageProps: { session, ...pageProps },})
+ {
   return (
-   
-    <Layout>
-      
-      <ToastContainer
-        position="top-center"
-        autoClose={3000}
-        closeOnClick
-        theme="light"
-        pauseOnHover={false}
-      />
+    <SessionProvider session={session}>
+      <Layout>
+      <ToastContainer position="top-center"  autoClose={3000} closeOnClick theme="light" pauseOnHover={false}/>
       <Component {...pageProps} />
-      
-    </Layout>
-  );
+      </Layout>
+    </SessionProvider>
+  )
 }
 
-export default MyApp;
+
+
+
+// function MyApp({ Component, pageProps }) {
+//   return (
+   
+//     <Layout>
+      
+//       <ToastContainer position="top-center"  autoClose={3000} closeOnClick theme="light" pauseOnHover={false}/>
+//       <Component {...pageProps} />
+      
+//     </Layout>
+//   );
+// }
+
+// export default MyApp;
