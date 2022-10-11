@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 
 import Sidebar from "../Sidebar/Sidebar";
-import Btn from "../../pages/login-btn"
+import Btn from "../login-btn"
 
 
 const Layout = (props: { children: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal; }) => {

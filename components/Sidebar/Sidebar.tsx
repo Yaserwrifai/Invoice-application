@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import Btn from "../../pages/login-btn"
+import Btn from "../login-btn"
 const Sidebar = () => {
   return (
     <div className="sidebar">

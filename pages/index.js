@@ -21,7 +21,7 @@ export default function Home(props) {
   const navigatePage = () => router.push("/add-new");
 
   return (
-    <Layout>
+ 
     <div className="main__container">
       <div className="invoice__header">
         <div className="invoice__header-logo">
@@ -78,18 +78,18 @@ export default function Home(props) {
         ))}
       </div>
     </div>
-    </Layout>
+   
   );
 }
 //----------------------------------------------------------
 export async function getStaticProps() {
-  const client = await MongoClient.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.z8tikhn.mongodb.net/invoices2?retryWrites=true&w=majority`, { useNewUrlParser: true });
+  const client = await MongoClient.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
 
   const db = client.db();
   const collection = db.collection("allInvoices");
 
   const invoices = await collection.find({}).toArray();
-
+console.log('invoices', invoices)
   return {
     props: {
       data: invoices.map((invoice) => {
