@@ -271,8 +271,8 @@ export async function getStaticPaths() {
 // --------------------------------------------------------
 export async function getStaticProps(context) {
   const { invoiceId } = context.params;
-  console.log('process.env.DB_USER', process.env.DB_PASSWORD)
-  const client = await MongoClient.connect('mongodb+srv://yaserwalid:lX2RkmcKUC3Sxlub@cluster0.z8tikhn.mongodb.net/invoices2?retryWrites=true&w=majority', { useNewUrlParser: true });
+  //console.log('process.env.DB_USER', process.env.DB_PASSWORD)
+  const client = await MongoClient.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.z8tikhn.mongodb.net/invoices2?retryWrites=true&w=majority`, { useNewUrlParser: true });
 
   const db = client.db();
   const collection = db.collection("allInvoices");

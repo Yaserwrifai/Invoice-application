@@ -6,7 +6,7 @@ import Btn from "../login-btn"
 const Layout = (props) => {
   return (
     <Fragment>
-      <h1>test</h1>
+      
       <Btn/>
       <Sidebar />
    

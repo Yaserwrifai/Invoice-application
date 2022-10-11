@@ -86,7 +86,7 @@ export default function Home(props) {
 }
 //----------------------------------------------------------
 export async function getStaticProps() {
-  const client = await MongoClient.connect('mongodb+srv://yaserwalid:lX2RkmcKUC3Sxlub@cluster0.z8tikhn.mongodb.net/invoices2?retryWrites=true&w=majority', { useNewUrlParser: true })
+  const client = await MongoClient.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.z8tikhn.mongodb.net/invoices2?retryWrites=true&w=majority`, { useNewUrlParser: true });
 
   const db = client.db();
   const collection = db.collection("allInvoices");
