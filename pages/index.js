@@ -11,9 +11,9 @@ export default function Home(props) {
 
   const componentRef = useRef(null);
   const handlePrint = useReactToPrint({ content: () => componentRef.current })
-  const user=process.env.DB_USER
-  const password=process.env.DB_PASSWORD
-  console.log('user &  password ....>',user , password )
+  // const user=process.env.DB_USER
+  // const password=process.env.DB_PASSWORD
+  // console.log('user &  password ....>',user , password )
 
   const router = useRouter();
   const { data } = props;
@@ -25,12 +25,6 @@ export default function Home(props) {
     <div className="main__container">
       <div className="invoice__header">
         <div className="invoice__header-logo">
-          <div>
-            <button className="btn" onClick={() => { window.print() }}> Print billing summary</button>
-            {/* //not work with safari */}
-            
-            <button className="btn" onClick={handlePrint}>Print this out!</button>
-          </div>
           <h3>Invoices</h3>
           <p>There are total {data.length} invoices</p>
         </div>
@@ -38,6 +32,9 @@ export default function Home(props) {
         <button className="btn" onClick={navigatePage}>
           Add New
         </button>
+        <button className="btn" onClick={handlePrint}>Print this out!</button>
+        {/* <button className="btn" onClick={() => { window.print() }}> Print All</button>
+            //not work with safari */}
       </div>
 
       <div className="invoice__container" ref={componentRef}>{/* // for print ref={componentRef} */}

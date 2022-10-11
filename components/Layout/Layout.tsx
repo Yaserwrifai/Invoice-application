@@ -1,15 +1,14 @@
 import React, { Fragment } from "react";
 
 import Sidebar from "../Sidebar/Sidebar";
-import Btn from "../login-btn"
+import Btn from "../../pages/login-btn"
 
-const Layout = (props) => {
+
+const Layout = (props: { children: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal; }) => {
   return (
     <Fragment>
-      
       <Btn/>
       <Sidebar />
-   
       <div>{props.children}</div>
     </Fragment>
   );

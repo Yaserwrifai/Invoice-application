@@ -100,9 +100,9 @@ const AddNew = () => {
   };
 
   return (
-    <div className="main__container">
-      <div className="new__invoice">
-        <div className="new__invoice-header">
+    <div className="main__container back">
+      <div className="new__invoice " >
+        <div className="new__invoice-header ">
           <h3>New Invoice</h3>
         </div>
 

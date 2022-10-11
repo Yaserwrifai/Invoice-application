@@ -108,7 +108,7 @@ const EditItem = (props) => {
     <div className="main__container">
       <div className="new__invoice">
         <div className="new__invoice-header">
-          <h3>Edit #{invoice.id.substr(0, 6).toUpperCase()}</h3>
+          <h3>Edit #{invoice.id.toUpperCase()}</h3>
         </div>
 
         {/* ======== new invoice body ========= */}
