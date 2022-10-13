@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { MongoClient } from "mongodb";
-import Layout from "../components/Layout/Layout.tsx";
 
 import React, { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
@@ -83,7 +82,7 @@ export default function Home(props) {
 }
 //----------------------------------------------------------
 export async function getStaticProps() {
-  const client = await MongoClient.connect(process.env.MONGODB_URI, { useNewUrlParser: true });
+  const client = await MongoClient.connect(process.env.MONGO_URI, { useNewUrlParser: true });
 
   const db = client.db();
   const collection = db.collection("allInvoices");
