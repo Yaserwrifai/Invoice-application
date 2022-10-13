@@ -3,7 +3,7 @@ import { MongoClient, ObjectId } from "mongodb";
 async function handler(req, res) {
   const { invoiceId } = req.query;
   console.log('invoiceId', invoiceId)
-  const client = await MongoClient.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.z8tikhn.mongodb.net/invoices2?retryWrites=true&w=majority`, { useNewUrlParser: true });
+  const client = await MongoClient.connect(process.env.MONGO_URI, { useNewUrlParser: true });
   console.log('client', client)
 
 

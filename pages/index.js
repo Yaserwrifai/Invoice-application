@@ -5,14 +5,15 @@ import { MongoClient } from "mongodb";
 import React, { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
 
+import StartingPageContent from '../components/starting-page/starting-page';
+
+
 
 export default function Home(props) {
 
   const componentRef = useRef(null);
   const handlePrint = useReactToPrint({ content: () => componentRef.current })
-  // const user=process.env.DB_USER
-  // const password=process.env.DB_PASSWORD
-  // console.log('user &  password ....>',user , password )
+  
 
   const router = useRouter();
   const { data } = props;
@@ -24,6 +25,7 @@ export default function Home(props) {
     <div className="main__container">
       <div className="invoice__header">
         <div className="invoice__header-logo">
+     <StartingPageContent />
           <h3>Invoices</h3>
           <p>There are total {data.length} invoices</p>
         </div>
@@ -104,15 +106,4 @@ console.log('invoices', invoices)
     revalidate: 1,
   };
 }
- //---------------
-//  export async function getServerSideProps() {
-// console.log('process.env.DB_USER', process.env.DB_USER)
-// console.log('process.env.DB_PASSWORD', process.env.DB_PASSWORD)
-
-
-//   return{
-//     props:{
-//       hello :"world"
-//     }
-//   }
-//  }
+ 

@@ -27,7 +27,7 @@
     "pages/api/edit/[invoiceId]/index.js",
     "pages/add-new/index.js",
     "pages/api/invoices/[invoiceId]/index.js"
-  ],
+, "components/layout/layout.js"  ],
   "exclude": [
     "node_modules"
   ]

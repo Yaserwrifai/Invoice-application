@@ -1,10 +1,14 @@
 import "../styles/globals.css";
-import Layout from "../components/Layout/Layout.tsx";
+
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import React from "react";
 import { SessionProvider } from "next-auth/react"
 import Navbar from "./Navbar";
+
+
+import Layout from '../components/layout/layout.js';
+
 
 
 export default function MyApp({Component, pageProps: { session, ...pageProps },})
@@ -13,7 +17,6 @@ export default function MyApp({Component, pageProps: { session, ...pageProps },}
     <SessionProvider session={session}>
       <Navbar />
       <Layout>
-      
       <ToastContainer position="top-center"  autoClose={3000} closeOnClick theme="light" pauseOnHover={false}/>
       <Component {...pageProps} />
       
@@ -25,16 +28,5 @@ export default function MyApp({Component, pageProps: { session, ...pageProps },}
 
 
 
-// function MyApp({ Component, pageProps }) {
-//   return (
-   
-//     <Layout>
-      
-//       <ToastContainer position="top-center"  autoClose={3000} closeOnClick theme="light" pauseOnHover={false}/>
-//       <Component {...pageProps} />
-      
-//     </Layout>
-//   );
-// }
 
-// export default MyApp;
+

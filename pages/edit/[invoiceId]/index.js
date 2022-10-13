@@ -346,8 +346,8 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const { invoiceId } = context.params;
 
-  const client = await MongoClient.connect('mongodb+srv://yaserwalid:lX2RkmcKUC3Sxlub@cluster0.z8tikhn.mongodb.net/invoices2?retryWrites=true&w=majority', { useNewUrlParser: true })
-
+  const client = await MongoClient.connect(process.env.MONGO_URI, { useNewUrlParser: true });
+ 
   const db = client.db();
   const collection = db.collection("allInvoices");
   const invoice = await collection.findOne({ _id: ObjectId(invoiceId) });
