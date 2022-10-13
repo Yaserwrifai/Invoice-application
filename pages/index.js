@@ -4,16 +4,18 @@ import { MongoClient } from "mongodb";
 
 import React, { useRef } from 'react';
 import { useReactToPrint } from 'react-to-print';
+import { useSession, signIn, signOut } from "next-auth/react";
 
 import StartingPageContent from '../components/starting-page/starting-page';
 
 
 
 export default function Home(props) {
-
+  const session = useSession()
+  console.log('session', session)
   const componentRef = useRef(null);
   const handlePrint = useReactToPrint({ content: () => componentRef.current })
-  
+
 
   const router = useRouter();
   const { data } = props;
@@ -21,11 +23,11 @@ export default function Home(props) {
   const navigatePage = () => router.push("/add-new");
 
   return (
- 
+
     <div className="main__container">
       <div className="invoice__header">
         <div className="invoice__header-logo">
-     <StartingPageContent />
+          <StartingPageContent />
           <h3>Invoices</h3>
           <p>There are total {data.length} invoices</p>
         </div>
@@ -65,10 +67,10 @@ export default function Home(props) {
               <div>
                 <button
                   className={`${invoice.status === "paid"
-                      ? "paid__status"
-                      : invoice.status === "pending"
-                        ? "pending__status"
-                        : "draft__status"
+                    ? "paid__status"
+                    : invoice.status === "pending"
+                      ? "pending__status"
+                      : "draft__status"
                     }`}
                 >
                   {invoice.status}
@@ -79,7 +81,7 @@ export default function Home(props) {
         ))}
       </div>
     </div>
-   
+
   );
 }
 //----------------------------------------------------------
@@ -90,7 +92,7 @@ export async function getStaticProps() {
   const collection = db.collection("allInvoices");
 
   const invoices = await collection.find({}).toArray();
-console.log('invoices', invoices)
+  console.log('invoices', invoices)
   return {
     props: {
       data: invoices.map((invoice) => {
@@ -106,4 +108,3 @@ console.log('invoices', invoices)
     revalidate: 1,
   };
 }
- 

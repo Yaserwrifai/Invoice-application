@@ -27,6 +27,7 @@ function AuthForm() {
   const passwordInputRef = useRef();
 
   const [isLogin, setIsLogin] = useState(true);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   function switchAuthModeHandler() {
@@ -35,31 +36,37 @@ function AuthForm() {
 
   async function submitHandler(event) {
     event.preventDefault();
-
+setIsLogin(true)
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRef.current.value;
 
     // optional: Add validation
 
     if (isLogin) {
-      const result = await signIn('credentials', {
+      console.log('test')
+      try {
+        const result = await signIn('credentials', {
         redirect: false,
         email: enteredEmail,
         password: enteredPassword,
-      });
-
-      if (!result.error) {
-        // set some auth state
-        router.replace('/profile');
-      }
-    } else {
-      try {
-        const result = await createUser(enteredEmail, enteredPassword);
-        console.log(result);
+      }); 
+      console.log('result', result)
+      setIsLogin(false)
       } catch (error) {
-        console.log(error);
+        console.log('error', error)
+        setIsLogin(false)
       }
+      
     }
+     
+    //   console.log('enteredEmail', enteredEmail)
+      // try {
+      //   const result = await createUser(enteredEmail, enteredPassword);
+      //   console.log(result);
+      // } catch (error) {
+      //   console.log(error);
+      // }
+    
   }
 
   return (
@@ -81,13 +88,13 @@ function AuthForm() {
         </div>
         <div className={classes.actions}>
           <button>{isLogin ? 'Login' : 'Create Account'}</button>
-          <button
+        {loading? <p>Loading</p> :  <button
             type='button'
             className={classes.toggle}
             onClick={switchAuthModeHandler}
           >
             {isLogin ? 'Create new account' : 'Login with existing account'}
-          </button>
+          </button>}
         </div>
       </form>
     </section>

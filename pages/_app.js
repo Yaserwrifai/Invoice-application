@@ -11,15 +11,14 @@ import Layout from '../components/layout/layout.js';
 
 
 
-export default function MyApp({Component, pageProps: { session, ...pageProps },})
- {
+export default function MyApp({ Component, pageProps: { session, ...pageProps }, }) {
   return (
     <SessionProvider session={session}>
-      <Navbar />
+      {/* <Navbar /> */}
       <Layout>
-      <ToastContainer position="top-center"  autoClose={3000} closeOnClick theme="light" pauseOnHover={false}/>
-      <Component {...pageProps} />
-      
+        <ToastContainer position="top-center" autoClose={3000} closeOnClick theme="light" pauseOnHover={false} />
+        <Component {...pageProps} />
+
       </Layout>
     </SessionProvider>
   )
