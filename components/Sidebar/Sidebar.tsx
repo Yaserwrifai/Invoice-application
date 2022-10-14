@@ -16,7 +16,7 @@ const Sidebar = () => {
        
         <h3>#Code Academy#</h3>
         <div className="sidebar__bottom">
-          <Image src="/ava.png" alt="avatar" width="50" height="50" />
+        <Image src="/ava.png" alt="avatar" width="50" height="50" />
         </div>
       </div>
     </div>
