@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import Btn from "../login-btn"
+//import Btn from "../login-btn"
 const Sidebar = () => {
   return (
     <div className="sidebar">
@@ -8,7 +8,7 @@ const Sidebar = () => {
       <div className="sidebar__container">
         <div className="sidebar__header">
           <div className="sidebar__logo">
-          <h4>*Invoices Project*</h4>
+          <h4>*Invoices Project--------*</h4>
           
           </div>
         
